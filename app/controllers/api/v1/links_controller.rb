@@ -13,13 +13,13 @@ module Api
       # POST /api/v1/links
       def create
         begin
-          @link = Link.find_or_create_by!(link_params)
-        rescue ActiveRecord::RecordInvalid => e
-          respond_to do |format|
-            format.json { render json: { errors: ['Provided link is not valid, please use a valid one'] } }
-          end
+          @link = Link.find_or_initialize_by(link_params)
+          @link.save! unless @link.persisted?
+        rescue ActiveRecord::RecordInvalid
+          @link = { success: false, errors: ['Link validation failed'] }
         end
         respond_to do |format|
+          puts format
           format.json { render json: @link }
         end
       end
