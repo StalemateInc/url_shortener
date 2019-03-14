@@ -1,9 +1,9 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app" class="container">
     <div class="row full-height-container">
       <div class="col-12">
         <div class="text-center">
-          <span>{{ message }}</span>
+          <shortener-form />
         </div>
       </div>
     </div>
@@ -11,12 +11,9 @@
 </template>
 
 <script>
+import ShortenerForm from "./components/ShortenerForm";
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
-  }
+  components: { ShortenerForm }
 }
 </script>
 
