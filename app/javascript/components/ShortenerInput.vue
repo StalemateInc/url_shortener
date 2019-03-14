@@ -1,5 +1,5 @@
 <template>
-    <input id="shortener-link-input" class="form-control px-3 big-input" placeholder="Enter your link here..." name="link" type="text" />
+    <input id="shortener-link-input" class="form-control px-3 big-input" placeholder="Enter your link here..." name="original" type="text" autocomplete="off"/>
 </template>
 
 <script>
