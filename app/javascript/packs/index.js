@@ -14,13 +14,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.min.css'
 Vue.use(BootstrapVue);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const el = document.body.appendChild(document.createElement('hello'));
-  const app = new Vue({
+  const el = document.body.appendChild(document.createElement('index'));
+  new Vue({
     el,
     render: h => h(App)
   });
 
-  console.log(app)
 });
 
 

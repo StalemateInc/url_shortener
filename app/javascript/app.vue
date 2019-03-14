@@ -1,6 +1,12 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
+  <div id="app" class="container-fluid">
+    <div class="row full-height-container">
+      <div class="col-12">
+        <div class="text-center">
+          <span>{{ message }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,5 +24,10 @@ export default {
 p {
   font-size: 2em;
   text-align: center;
+}
+.full-height-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 </style>
