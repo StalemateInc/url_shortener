@@ -38,17 +38,13 @@
             }).then(function(response) {
               console.log(response);
               const response_data = response.data;
-              console.log(self.errors);
+              const success = response_data.success;
               initialState();
-              if (response_data.success) {
-                // self.shortened = response_data.shortened;
-                Vue.set(self, 'shortened', response_data.shortened);
-                Vue.set(self, 'success', true);
-              } else {
-                // self.errors = response_data.errors;
-                Vue.set(self, 'errors', response_data.errors);
-                Vue.set(self, 'success', false);
+              if (success) {
+                Vue.set(self, 'shortened', response_data.link.shortened);
               }
+              Vue.set(self, 'success', response_data.success);
+              Vue.set(self, 'errors', response_data.errors);
             }).catch(function(error) {
               console.log(error);
             });

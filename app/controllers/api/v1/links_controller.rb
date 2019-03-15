@@ -12,15 +12,14 @@ module Api
 
       # POST /api/v1/links
       def create
-        begin
-          @link = Link.find_or_initialize_by(link_params)
-          @link.save! unless @link.persisted?
-        rescue ActiveRecord::RecordInvalid
-          @link = { success: false, errors: ['Link validation failed'] }
-        end
+        result = CreateShortenedLink.call(original: link_params[:original])
         respond_to do |format|
           puts format
-          format.json { render json: @link }
+          format.json do
+            render json: { link: result.link,
+                           success: result.success?,
+                           errors: result.errors }
+          end
         end
       end
 
