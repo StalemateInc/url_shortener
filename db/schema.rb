@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_15_140142) do
+ActiveRecord::Schema.define(version: 2019_03_15_144029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "links", force: :cascade do |t|
     t.string "original", null: false
@@ -27,7 +33,10 @@ ActiveRecord::Schema.define(version: 2019_03_15_140142) do
     t.bigint "link_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_visits_on_country_id"
     t.index ["link_id"], name: "index_visits_on_link_id"
   end
 
+  add_foreign_key "visits", "countries"
 end
