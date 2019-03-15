@@ -2,7 +2,7 @@
     <div v-if="success !== null">
         <div v-if="errors.length === 0">
             <p>Your shortened link is:</p>
-            <a v-bind:href="shortened">{{ shortened }}</a>
+            <a v-bind:href="shortened">{{ buildUrl(shortened) }}</a>
         </div>
         <div v-else>
             <p>Oops, looks like something went wrong.</p>
@@ -14,7 +14,12 @@
 <script>
     export default {
         name: "ShortenerInfo",
-        props: ['shortened', 'errors', 'success']
+        props: ['shortened', 'errors', 'success'],
+        methods: {
+            buildUrl: function(shortened) {
+                return window.location.hostname + '/' + shortened
+            }
+        }
     }
 </script>
 
