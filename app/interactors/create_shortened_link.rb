@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class CreateShortenedLink < BaseInteractor
 
-  # original: String
+  delegate :original, to: :context
 
   def call
     context.errors = []
     link = Link.find_by(original: context.original)
     unless link
       if link_valid?(context.original)
-        # create shortened there
-        link = Link.create(original: context.original, shortened: ':)')
+        shortened = Base32::Crockford.encode(Druuid.gen)
+        link = Link.create(original: context.original, shortened: shortened)
       else
         context.errors.push('Provided record is not valid')
         context.fail!

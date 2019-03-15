@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'base32-crockford'
+gem 'druuid'
 gem 'figaro'
 gem 'foreman'
 gem 'interactor', '~> 3.0'
