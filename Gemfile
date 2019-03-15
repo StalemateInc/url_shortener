@@ -37,6 +37,7 @@ gem 'druuid'
 gem 'figaro'
 gem 'foreman'
 gem 'interactor', '~> 3.0'
+gem 'maxmind-db'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
