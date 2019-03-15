@@ -1,24 +1,15 @@
-# README
+## URL Shortener Application  
+An appication, which gets an url string and (possibly) shortens it. Kinda mimics the functionality of 'bit.ly' service.
+Requisites:
+- Ruby version: 2.5.3  
+- Rails version: 5.2.2.1  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Database creation:
+- Create a file called 'application.yml', create key/value pairs with URL_SHORTENER_DATABASE_USERNAME and URL_SHORTENER_DATABASE_PASSWORD respectively.  
+- `rails db:create`
+- `rails db:migrate`
+- Download a GeoLite2 Country MinMax DB from [here](https://dev.maxmind.com/geoip/geoip2/geolite2/#Downloads) and place it into `db` folder inside the project.
+- `rails s`
 
-Things you may want to cover:
+Happy shortening!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
