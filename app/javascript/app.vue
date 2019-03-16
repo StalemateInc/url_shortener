@@ -1,30 +1,14 @@
 <template>
-  <div id="app" class="container">
-    <div class="row full-height-container">
-      <div class="col-12">
-        <div class="text-center">
-          <shortener-form />
-        </div>
-      </div>
-    </div>
+  <div id="app">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ShortenerForm from "./components/ShortenerForm";
-export default {
-  components: { ShortenerForm }
-}
+  export default {
+    name: 'App'
+  }
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
-.full-height-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-}
 </style>

@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  match '*path', to: 'redirect#index', via: :get
+  get '*path', to: 'redirect#index'
 end
