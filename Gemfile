@@ -38,6 +38,7 @@ gem 'figaro'
 gem 'foreman'
 gem 'interactor', '~> 3.0'
 gem 'maxmind-db'
+gem 'terminal-table'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
