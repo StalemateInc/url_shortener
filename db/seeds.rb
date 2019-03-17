@@ -1,7 +1,46 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+LINKS_TO_BE_CREATED_COUNT = 20_000
+LINKS_DELIMITER  = 1_000
+VISITS_TO_BE_CREATED_COUNT = 100_000
+VISITS_DELIMITER = 1_000
+COUNTRIES_TO_BE_CREATED_COUNT = 50
+
+puts '== LINKS GENERATION START ==='
+
+LINKS_TO_BE_CREATED_COUNT/LINKS_DELIMITER.times do
+  links = []
+  LINKS_DELIMITER.times do
+    links << Link.new(
+        original: FFaker::Internet.http_url + '/' + SecureRandom.hex,
+        shortened: Druuid.gen
+    )
+  end
+  puts "boop"
+  Link.import links, validate: false
+end
+
+puts '=== LINKS GENERATION FINISH ==='
+puts '=== COUNTRIES GENERATION START ==='
+
+countries_names = FFaker::Address::COUNTRY.sample(COUNTRIES_TO_BE_CREATED_COUNT)
+countries_names.each do |country_name|
+  Country.create(name: country_name)
+  puts "aaaa"
+end
+
+puts '=== COUNTRIES GENERATION FINISH ==='
+puts '=== VISITS GENERATION START ==='
+
+VISITS_TO_BE_CREATED_COUNT/VISITS_DELIMITER.times do
+  visits = []
+  VISITS_DELIMITER.times do
+    visits << Visit.new(
+        ip: FFaker::Internet.ip_v4_address,
+        link_id: rand(1..LINKS_TO_BE_CREATED_COUNT),
+        country_id: rand(1..COUNTRIES_TO_BE_CREATED_COUNT)
+    )
+  end
+  puts "beep"
+  Visit.import visits, validate: false
+end
+
+puts '=== VISITS GENERATION FINISH ==='
