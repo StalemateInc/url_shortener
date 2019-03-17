@@ -6,17 +6,31 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
-import App from '../app.vue'
+import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.min.css'
+import IndexPage from '../pages/IndexPage'
+import StatisticsPage from '../pages/StatisticsPage'
+import App from '../app.vue'
 
+Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.body.appendChild(document.createElement('index'));
+  const routes = [
+    { path: '/', name: 'index', component: IndexPage },
+    { path: '/statistics', name: 'statistics', component: StatisticsPage }
+  ];
+
+  const router = new VueRouter({
+    routes: routes
+  });
+
   new Vue({
     el,
+    router,
     render: h => h(App)
   });
 
