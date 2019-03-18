@@ -4,27 +4,32 @@ module Api
       include Pagy::Backend
 
       def index
-        stats = Rails.cache.fetch('stats') do
+        stats = Rails.cache.fetch('stats', expires_in: 5.minutes) do
           Link.left_joins(:visits).group(:original).count
         end
         all_visits = sorted_statistics(stats, params[:field], params[:type])
-        pagy, visits_paged = pagy_array(all_visits, items: params[:perPage], page: params[:page])
+        _pagy, visits_paged = pagy_array(all_visits,
+                                         items: params[:perPage],
+                                         page: params[:page])
         respond_to do |format|
-          format.json { render json: {data: reformat_data(visits_paged), totalRecords: all_visits.length } }
+          format.json do
+            render json: { data: reformat_data(visits_paged),
+                           totalRecords: all_visits.length }
+          end
         end
       end
 
       private
 
       def sorted_statistics(hash, field, order)
-        sorted = hash.sort_by { |k,v| field == 'visits' ? v : k }
+        sorted = hash.sort_by { |k, v| field == 'visits' ? v : k }
         order == 'asc' ? sorted : sorted.reverse
       end
 
       def reformat_data(visits_paged)
         visits = []
         visits_paged.each do |link, count|
-          visits.push({ original: link, visits: count } )
+          visits.push(original: link, visits: count)
         end
         visits
       end

@@ -6,15 +6,14 @@ COUNTRIES_TO_BE_CREATED_COUNT = 50
 
 puts '== LINKS GENERATION START ==='
 
-LINKS_TO_BE_CREATED_COUNT/LINKS_DELIMITER.times do
+LINKS_TO_BE_CREATED_COUNT / LINKS_DELIMITER.times do
   links = []
   LINKS_DELIMITER.times do
     links << Link.new(
-        original: FFaker::Internet.http_url + '/' + SecureRandom.hex,
-        shortened: Druuid.gen
+      original: FFaker::Internet.http_url + '/' + SecureRandom.hex,
+      shortened: Druuid.gen
     )
   end
-  puts "boop"
   Link.import links, validate: false
 end
 
@@ -24,22 +23,20 @@ puts '=== COUNTRIES GENERATION START ==='
 countries_names = FFaker::Address::COUNTRY.sample(COUNTRIES_TO_BE_CREATED_COUNT)
 countries_names.each do |country_name|
   Country.create(name: country_name)
-  puts "aaaa"
 end
 
 puts '=== COUNTRIES GENERATION FINISH ==='
 puts '=== VISITS GENERATION START ==='
 
-VISITS_TO_BE_CREATED_COUNT/VISITS_DELIMITER.times do
+VISITS_TO_BE_CREATED_COUNT / VISITS_DELIMITER.times do
   visits = []
   VISITS_DELIMITER.times do
     visits << Visit.new(
-        ip: FFaker::Internet.ip_v4_address,
-        link_id: rand(1..LINKS_TO_BE_CREATED_COUNT),
-        country_id: rand(1..COUNTRIES_TO_BE_CREATED_COUNT)
+      ip: FFaker::Internet.ip_v4_address,
+      link_id: rand(1..LINKS_TO_BE_CREATED_COUNT),
+      country_id: rand(1..COUNTRIES_TO_BE_CREATED_COUNT)
     )
   end
-  puts "beep"
   Visit.import visits, validate: false
 end
 
