@@ -38,7 +38,7 @@ gem 'druuid'
 gem 'figaro'
 gem 'foreman'
 gem 'interactor', '~> 3.0'
-gem 'maxmind-db'
+gem 'maxminddb'
 gem 'redis-rails'
 gem 'pagy'
 gem 'terminal-table'
@@ -54,6 +54,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'ffaker'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
