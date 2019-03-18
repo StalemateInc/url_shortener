@@ -34,5 +34,4 @@ yarn-debug.log*
 .yarn-integrity
 .idea/
 /config/application.yml
-Gemfile.lock
 db/GeoLite2-Country.mmdb
