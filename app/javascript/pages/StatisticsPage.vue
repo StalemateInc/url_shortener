@@ -62,9 +62,10 @@
                 this.loadItems();
             },
             onSortChange(params) {
+                console.log(params);
                 this.updateParams({
-                    type: params.sortType,
-                    field: this.columns[params.columnIndex].field,
+                    type: params[0].type,
+                    field: params[0].field,
                 });
                 this.loadItems();
             },
