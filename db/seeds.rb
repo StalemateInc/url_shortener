@@ -6,12 +6,12 @@ COUNTRIES_TO_BE_CREATED_COUNT = 50
 
 puts '== LINKS GENERATION START ==='
 
-LINKS_TO_BE_CREATED_COUNT / LINKS_DELIMITER.times do
+(LINKS_TO_BE_CREATED_COUNT / LINKS_DELIMITER).times do
   links = []
   LINKS_DELIMITER.times do
     links << Link.new(
       original: FFaker::Internet.http_url + '/' + SecureRandom.hex,
-      shortened: Druuid.gen
+      shortened: Base32::Crockford.encode(Druuid.gen)
     )
   end
   Link.import links, validate: false
@@ -28,7 +28,7 @@ end
 puts '=== COUNTRIES GENERATION FINISH ==='
 puts '=== VISITS GENERATION START ==='
 
-VISITS_TO_BE_CREATED_COUNT / VISITS_DELIMITER.times do
+(VISITS_TO_BE_CREATED_COUNT / VISITS_DELIMITER).times do
   visits = []
   VISITS_DELIMITER.times do
     visits << Visit.new(
